@@ -9,4 +9,4 @@ spring:
     config:
       server:
         native:
-          search-location: classpath:/shared  #在shared路径下创建各个微服务对应的配置文件
+          search-locations: classpath:/shared  #在shared路径下创建各个微服务对应的配置文件
