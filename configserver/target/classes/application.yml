@@ -1,0 +1,12 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-location: classpath:/shared  #在shared路径下创建各个微服务对应的配置文件
