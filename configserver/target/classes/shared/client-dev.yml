@@ -4,9 +4,9 @@ server:
 spring:
   application:
     name: menu
-    thymeleaf:
-      prefix: classpath:/static/
-      suffix: .html
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
 
 eureka:
   client:
