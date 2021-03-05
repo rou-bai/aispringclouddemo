@@ -7,5 +7,12 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/orderingsystem?useUnicode=true&amp;characterEncoding=UTF-8</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="@localhost" uuid="a7a2c6d9-1ebf-48fe-92e9-068805f36eed">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
