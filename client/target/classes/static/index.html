@@ -28,7 +28,7 @@
 
             table.render({
                 elem: '#test'
-                ,url:'/client/findall'
+                ,url:'/menu/findall'
                 ,title: '菜单列表'
                 ,cols: [
                     [
@@ -51,11 +51,11 @@
                 var data = obj.data;
                 if(obj.event === 'update'){
                     layer.alert("是否要修改菜单");
-                    window.location.href="/client/findbyid/"+data.id;
+                    window.location.href="/menu/findbyid/"+data.id;
                 }
                 if(obj.event === 'delete'){
                     layer.confirm("是否要删除菜单", function (index){
-                        window.location.href="/client/deletebyid/" + data.id;
+                        window.location.href="/menu/deletebyid/" + data.id;
                         layer.close(index);
                     });
                 }

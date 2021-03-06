@@ -19,8 +19,8 @@
 		select count(*) from t_menu;
 	</select>
 
-    <insert id="save" parameterType="Menu">
-		insert into t_menu(name,price,flavor) values(#{name},#{price},#{flavor})
+    <insert id="add" parameterType="Menu">
+		insert into t_menu(name,price,flavor, tid) values(#{name},#{price},#{flavor}, #{type.id})
 	</insert>
 
     <select id="findById" parameterType="long" resultType="com.southwind.entity.Menu">

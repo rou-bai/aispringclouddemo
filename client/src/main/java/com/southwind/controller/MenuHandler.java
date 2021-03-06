@@ -1,17 +1,22 @@
 package com.southwind.controller;
 
+import com.southwind.entity.Menu;
 import com.southwind.entity.MenuVO;
+import com.southwind.entity.Type;
 import com.southwind.feign.MenuFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+//          区别：RequestParam用于 /xxx/参数
+//               PathVariable用于 /xxx?aa=参数
 
 //@RestController 这个返回的是rest的json数据
 @Controller  //这个返回视图，可以和页面交互
-@RequestMapping("/client")
-public class ClientHandler {
+@RequestMapping("/menu")
+public class MenuHandler {
     @Autowired
     private MenuFeign menuFeign;
 
@@ -32,8 +37,34 @@ public class ClientHandler {
     @GetMapping("/deletebyid/{id}")
     public String deleteById(@PathVariable("id") Long id){
         menuFeign.deleteById(id);
-        return "redirect:/client/index";
+        return "redirect:/menu/index";
     }
 
+    @GetMapping("/findtypes")
+    public ModelAndView findTypes(){
+        //将数据传递给前端的方法：ModelAndView
+        ModelAndView model = new ModelAndView();
+        model.setViewName("menu_add");
+        model.addObject("types", menuFeign.findTypes());
+        List<Type> types = menuFeign.findTypes();
+        return model;
+    }
 
+    @PostMapping("/add")
+    public String add(Menu menu){
+        menuFeign.add(menu);
+        return "redirect:/menu/index";
+    }
+
+    @PostMapping("/update")
+    public String update(Menu menu){
+        menuFeign.update(menu);
+        return "redirect:/menu/index";
+    }
+
+    @GetMapping("/findbyid/{id}")
+//    @ResponseBody
+    public Menu findById(@PathVariable("id") long id){
+        return menuFeign.findById(id);
+    }
 }
