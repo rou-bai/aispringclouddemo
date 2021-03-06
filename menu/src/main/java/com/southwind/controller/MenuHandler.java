@@ -23,11 +23,14 @@ public class MenuHandler {
         return "menu的端口是：" + port;
     }
 
-    @GetMapping("/findall/{index}/{limit}")
-    public MenuVO findall(@PathVariable("index") int index, @PathVariable("limit") int limit){
-
+    @GetMapping("/findall")
+    public MenuVO findall(@RequestParam("index") int index, @RequestParam("limit") int limit){
         return new MenuVO(0, "", menuRepository.count(), menuRepository.findAll(index, limit));
+    }
 
+    @DeleteMapping("/deletebyid/{id}")
+    public void deleteById(@PathVariable("id") long id){
+        menuRepository.deleteById(id);
     }
 
 

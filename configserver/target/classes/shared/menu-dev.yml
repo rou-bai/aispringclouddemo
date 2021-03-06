@@ -11,7 +11,8 @@ spring:
     url: jdbc:mysql://localhost:3306/orderingsystem?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: ty123456
-    drive-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    drive-class-name: com.mysql.jdbc.Driver
 
 eureka:
   client:
