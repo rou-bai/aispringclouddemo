@@ -22,6 +22,6 @@ eureka:
     prefer-ip-address: true
 
 
-#mybatis:
-#  mapper-locations: classpath:/mapping/*.xml
-#  type-aliases-package: com.southwind.entity
+mybatis:
+  mapper-locations: classpath:/mapping/*.xml
+  type-aliases-package: com.southwind.entity
