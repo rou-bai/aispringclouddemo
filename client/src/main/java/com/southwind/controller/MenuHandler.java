@@ -6,6 +6,7 @@ import com.southwind.entity.Type;
 import com.southwind.feign.MenuFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,9 +63,11 @@ public class MenuHandler {
         return "redirect:/menu/index";
     }
 
-    @GetMapping("/findbyid/{id}")
-//    @ResponseBody
-    public Menu findById(@PathVariable("id") long id){
-        return menuFeign.findById(id);
+    @GetMapping("/info/{id}")
+    public String info(@PathVariable("id") Long id, Model model){
+//        另一种传递值到页面到方法, model
+        model.addAttribute("menu", menuFeign.findById(id));
+        model.addAttribute("types", menuFeign.findTypes());
+        return "menu_update";
     }
 }

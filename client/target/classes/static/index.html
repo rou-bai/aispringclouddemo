@@ -51,7 +51,7 @@
                 var data = obj.data;
                 if(obj.event === 'update'){
                     layer.alert("是否要修改菜单");
-                    window.location.href="/menu/findbyid/"+data.id;
+                    window.location.href="/menu/info/"+data.id;
                 }
                 if(obj.event === 'delete'){
                     layer.confirm("是否要删除菜单", function (index){

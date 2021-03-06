@@ -48,11 +48,11 @@ public class MenuHandler {
     }
 
     @GetMapping("/findbyid/{id}")
-    public Menu findById(@PathVariable("id") long id){
+    public Menu findById(@PathVariable("id") Long id){
         return menuRepository.findById(id);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public void update(@RequestBody Menu menu){
         //通过feign传递过来的是个json数据，但实际上需要但是个menu对象，必须通过requestbody注明
         menuRepository.update(menu);

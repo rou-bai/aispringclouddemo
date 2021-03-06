@@ -22,9 +22,9 @@ public interface MenuFeign {
     @PostMapping("/menu/add")
     public void add(Menu menu);
 
-    @PostMapping("/menu/update")
+    @PutMapping("/menu/update")
     public void update(Menu menu);
 
     @GetMapping("/menu/findbyid/{id}")
-    public Menu findById(@PathVariable("id") long id);
+    public Menu findById(@PathVariable("id") Long id);
 }
