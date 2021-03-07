@@ -8,6 +8,9 @@
 </head>
 <body class="layui-layout-body">
 <div class="layui-container" style="margin-top: 50px;width: 1000px;">
+    <div style="margin-left: 460px; width: 200px;">
+        欢迎回来！<a href="/account/redirect/order" th:text="${session.admin.username}"></a><a href="/account/logout">&nbsp;&nbsp;&nbsp;<button class="layui-btn layui-btn-warm layui-btn-radius">退出</button></a>
+    </div>
 
     <table class="layui-hide" id="test" style="width: 300px" lay-filter="test"></table>
     <script type="text/html" id="barDemo">

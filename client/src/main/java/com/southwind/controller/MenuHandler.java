@@ -32,7 +32,7 @@ public class MenuHandler {
 
     @GetMapping("/index")
     public String index(){
-        return "/index";
+        return "menu_manage";
     }
 
     @GetMapping("/deletebyid/{id}")
