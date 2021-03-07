@@ -1,15 +1,14 @@
 package com.southwind.feign;
 
 import com.southwind.entity.User;
+import com.southwind.entity.UserVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@FeignClient(value="/user")
+@FeignClient("user")
 public interface UserFeign {
     @GetMapping("/user/findall")
-    public List<User> findAll(@RequestParam("index") int index, @RequestParam("limit") int limit);
+    public UserVO findAll(@RequestParam("index") int index, @RequestParam("limit") int limit);
 
     @GetMapping("/user/findbyid/{id}")
     public User findById(@PathVariable("id") Long id);
@@ -18,11 +17,11 @@ public interface UserFeign {
     public int count();
 
     @PostMapping("/user/add")
-    public void add(@RequestBody User user);
+    public void add(User user);
 
     @PutMapping("/user/update")
-    public void update(@RequestBody User user);
+    public void update(User user);
 
-    @DeleteMapping("/user/deletebyid")
-    public void deleteById(Long id);
+    @DeleteMapping("/user/deletebyid/{id}")
+    public void deleteById(@PathVariable("id") Long id);
 }

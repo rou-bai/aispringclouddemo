@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-//          区别：RequestParam用于 /xxx/参数
-//               PathVariable用于 /xxx?aa=参数
+//          区别：PathVariable用于 /xxx/参数
+//               RequestParam用于 /xxx?aa=参数&&bb=参数
 
 //@RestController 这个返回的是rest的json数据
 @Controller  //这个返回视图，可以和页面交互

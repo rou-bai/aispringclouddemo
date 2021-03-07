@@ -1,11 +1,13 @@
 package com.southwind.controller;
 
 import com.southwind.entity.User;
+import com.southwind.entity.UserVO;
 import com.southwind.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -23,8 +25,8 @@ public class UserHandler {
     }
 
     @GetMapping("/findall")
-    public List<User> findAll(@RequestParam("index") int index, @RequestParam("limit") int limit){
-        return userRepository.findAll(index, limit);
+    public UserVO findAll(@RequestParam("index") int index, @RequestParam("limit") int limit){
+        return new UserVO(0, "", userRepository.count(), userRepository.findAll(index, limit));
     }
 
     @GetMapping("/findbyid/{id}")
@@ -39,6 +41,7 @@ public class UserHandler {
 
     @PostMapping("/add")
     public void add(@RequestBody User user){
+        user.setRegisterdate(new Date());
         userRepository.add(user);
     }
 
@@ -47,8 +50,8 @@ public class UserHandler {
         userRepository.update(user);
     }
 
-    @DeleteMapping("/deletebyid")
-    public void deleteById(Long id){
+    @DeleteMapping("/deletebyid/{id}")
+    public void deleteById(@PathVariable("id") Long id){
         userRepository.deleteById(id);
     }
 }

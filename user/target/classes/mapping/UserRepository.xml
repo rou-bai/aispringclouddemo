@@ -11,7 +11,7 @@
 	</select>
 
     <insert id="add" parameterType="User">
-		insert into t_menu(username,password,nickname,gender,telephone,registerdate,address)
+		insert into t_user(username,password,nickname,gender,telephone,registerdate,address)
 		 values(#{username},#{password},#{nickname}, #{gender}, #{telephone}, #{registerdate}, #{address})
 	</insert>
 
@@ -20,8 +20,8 @@
     </select>
 
     <update id="update" parameterType="com.southwind.entity.User">
-		update t_user set username = #{username},password = #{password},nickname = #{nickname},
-		                  gender=#{gender}, telephone=#{telephone}, registerdate=#{registerdate},
+		update t_user set password = #{password},nickname = #{nickname},
+		                  gender=#{gender}, telephone=#{telephone},
 		                  address=#{address} where id = #{id}
 	</update>
 

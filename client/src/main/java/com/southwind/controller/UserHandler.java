@@ -1,27 +1,37 @@
 package com.southwind.controller;
 
 import com.southwind.entity.User;
+import com.southwind.entity.UserVO;
 import com.southwind.feign.UserFeign;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserHandler {
     @Autowired
     private UserFeign userFeign;
 
-    @GetMapping("findall")
-    public List<User> findAll(@RequestParam("page") int page, @RequestParam("limit") int limit){
+    @GetMapping("/index")
+    public String index(){
+        return "user_manage";
+    }
+
+    @GetMapping("/findall")
+    @ResponseBody
+    public UserVO findAll(@RequestParam("page") int page, @RequestParam("limit") int limit){
         int index = (page - 1) * limit;
         return userFeign.findAll(index, limit);
     };
 
-    @GetMapping("/findbyid/{id}")
-    public User findById(@PathVariable("id") Long id){
-        return userFeign.findById(id);
+    @GetMapping("/info/{id}")
+    public String findById(@PathVariable("id") Long id, Model model){
+        model.addAttribute("user", userFeign.findById(id));
+        return "user_update";
     };
 
     @GetMapping("/count")
@@ -31,19 +41,25 @@ public class UserHandler {
 
     @PostMapping("/add")
     public String add(User user){
+        System.out.println(user);
         userFeign.add(user);
-        return "redirect:/user/findall";
+        return "redirect:/user/index";
     };
 
-    @PutMapping("/update")
-    public String update(@RequestBody User user){
+    @GetMapping("/info/add")
+    public String infoAdd(){
+        return "user_add";
+    }
+
+    @PostMapping("/update")
+    public String update(User user){
         userFeign.update(user);
-        return "redirect:/user/findall";
+        return "redirect:/user/index";
     };
 
-    @DeleteMapping("/deletebyid")
-    public String deleteById(Long id){
+    @GetMapping("/deletebyid/{id}")
+    public String deleteById(@PathVariable("id") Long id){
         userFeign.deleteById(id);
-        return "redirect:/user/findall";
+        return "redirect:/user/index";
     };
 }
