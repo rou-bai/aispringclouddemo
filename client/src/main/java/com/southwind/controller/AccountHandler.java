@@ -17,6 +17,11 @@ public class AccountHandler {
     @Autowired
     private AccountFeign accountFeign;
 
+    @RequestMapping("/{target}")
+    public String redirect(@PathVariable("target") String target){
+        return target;
+    }
+
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
@@ -38,7 +43,7 @@ public class AccountHandler {
                 user.setUsername(name);
                 session.setAttribute("user", user);
 
-                return "redirect:/menu/index";
+                return "index";
             case("admin"):
                 Admin admin = new Admin();
                 String admiIdStr = hashMap.get("id") + "";
@@ -47,7 +52,7 @@ public class AccountHandler {
                 admin.setId(adminId);
                 admin.setUsername(adminName);
                 session.setAttribute("admin", admin);
-                return "redirect:/user/index";
+                return "main";
         }
 
         return "login";
