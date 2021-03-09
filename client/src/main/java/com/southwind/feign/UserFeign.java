@@ -17,10 +17,10 @@ public interface UserFeign {
     public int count();
 
     @PostMapping("/user/add")
-    public void add(User user);
+    public void add(@RequestBody User user);
 
     @PutMapping("/user/update")
-    public void update(User user);
+    public void update(@RequestBody User user);
 
     @DeleteMapping("/user/deletebyid/{id}")
     public void deleteById(@PathVariable("id") Long id);

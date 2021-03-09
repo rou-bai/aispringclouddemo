@@ -20,10 +20,10 @@ public interface MenuFeign {
     public List<Type> findTypes();
 
     @PostMapping("/menu/add")
-    public void add(Menu menu);
+    public void add(@RequestBody Menu menu);
 
     @PutMapping("/menu/update")
-    public void update(Menu menu);
+    public void update(@RequestBody Menu menu);
 
     @GetMapping("/menu/findbyid/{id}")
     public Menu findById(@PathVariable("id") Long id);

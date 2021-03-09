@@ -24,9 +24,11 @@ public class MenuHandler {
     @GetMapping("/findall")
     @ResponseBody  //这个注解用来告诉返回的是数据不是视图
     //feign的客户端和服务端请求返回格式和参数类似要对应！！不然就出现坑爹的404
-    public MenuVO findAll(@RequestParam("page") int page,
+    public MenuVO findAll(@RequestParam(value="page", required=false) int page,
                           @RequestParam("limit") int limit){
-        int index = (page - 1) * limit;
+        int index = 0;
+        if (page > 0){
+            index = (page - 1) * limit;}
         return menuFeign.findAll(index, limit);
     }
 
@@ -54,7 +56,7 @@ public class MenuHandler {
     @PostMapping("/add")
     public String add(Menu menu){
         menuFeign.add(menu);
-        return "redirect:/menu/index";
+        return "menu_manage";
     }
 
     @PostMapping("/update")

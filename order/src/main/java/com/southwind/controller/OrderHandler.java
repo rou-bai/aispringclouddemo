@@ -41,4 +41,22 @@ public class OrderHandler {
         return orderRepository.countByUid(uid);
     }
 
+    @GetMapping("/findbystate/{index}/{limit}/{state}")
+    public OrderVO findByState(@PathVariable("index") int index,
+                               @PathVariable("limit") int limit,
+                               @PathVariable("state") int state){
+        return new OrderVO(0, "", orderRepository.countByState(state), orderRepository.findByState(index, limit, state));
+    }
+
+    @GetMapping("/countbystate/{state}")
+    public int countByState(@PathVariable("state") int state){
+        return orderRepository.countByState(state);
+    }
+
+    @PutMapping("/updatestatebyid/{id}/{state}/{aid}")
+    public void updateStateById(@PathVariable("id") Long id,
+                                @PathVariable("state") int state,
+                                @PathVariable("aid") Long aid){
+        orderRepository.updateStateById(id, state, aid);
+    }
 }

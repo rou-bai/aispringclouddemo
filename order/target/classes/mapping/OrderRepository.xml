@@ -8,6 +8,8 @@
         <result property="date" column="date"></result>
         <result property="state" column="state"></result>
         <association property="menu" select="com.southwind.repository.MenuRepository.findById" column="mid"></association>
+        <association property="user" select="com.southwind.repository.UserRepository.findById" column="uid"></association>
+
     </resultMap>
 
     <select id="findByUid" resultMap="orderMap">
@@ -21,6 +23,17 @@
 
     <select id="countByUid" resultType="int">
         select count(*) from t_order where uid=#{uid};
+    </select>
+
+    <select id="findByState" resultMap="orderMap">
+        select * from t_order where state=#{param3} limit #{param1},#{param2}
+    </select>
+    <update id="updateStateById">
+        update t_order set state=#{param2}, aid=#{param3} where id=#{param1}
+    </update>
+
+    <select id="countByState" resultType="int">
+        select count(*) from t_order where state=#{state};
     </select>
 
 
