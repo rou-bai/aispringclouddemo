@@ -1,2 +1,6 @@
+com/southwind/repository/UserRepository.class
+com/southwind/entity/User.class
+com/southwind/entity/Admin.class
 com/southwind/AccountApplication.class
 com/southwind/controller/AccountHandler.class
+com/southwind/repository/AdminRepository.class

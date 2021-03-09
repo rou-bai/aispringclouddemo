@@ -53,4 +53,11 @@ public class AccountHandler {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        System.out.println(1111111);
+        // 销毁session
+        session.invalidate();
+        return "redirect:/login.html";
+    }
 }
